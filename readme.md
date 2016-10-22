@@ -50,7 +50,7 @@ Iterated over concurrently in the `filterer` function.
 
 Type: `Function`
 
-Expected to return a `boolean` or a `Promise` for a `boolean`.
+Expected to return a `Promise<boolean>` or `boolean`.
 
 #### options
 
@@ -59,14 +59,16 @@ Type: `Object`
 ##### concurrency
 
 Type: `number`<br>
-Default: `Infinity`
+Default: `Infinity`<br>
+Minimum: `1`
 
-Number of concurrently pending promises returned by `filterer`. Minimum `1`.
+Number of concurrently pending promises returned by `filterer`.
 
 
 ## Related
 
 - [p-map](https://github.com/sindresorhus/p-map) - Map over promises concurrently
+- [p-times](https://github.com/sindresorhus/p-times) - Run promise-returning & async functions a specific number of times concurrently
 - [More…](https://github.com/sindresorhus/promise-fun)
 
 
