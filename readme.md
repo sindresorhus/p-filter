@@ -67,6 +67,7 @@ Number of concurrently pending promises returned by `filterer`.
 
 ## Related
 
+- [p-locate](https://github.com/sindresorhus/p-locate) - Get the first fulfilled promise that satisfies the provided testing function
 - [p-map](https://github.com/sindresorhus/p-map) - Map over promises concurrently
 - [p-times](https://github.com/sindresorhus/p-times) - Run promise-returning & async functions a specific number of times concurrently
 - [More…](https://github.com/sindresorhus/promise-fun)
