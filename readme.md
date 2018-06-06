@@ -29,7 +29,7 @@ const filterer = el => getWeather(el).then(place => place.temperature > 30);
 
 pFilter(places, filterer).then(result => {
 	console.log(result);
-	//=> [{name: 'Bangkok, Thailand', temperature: 36}]
+	//=> ['Bangkok, Thailand']
 });
 ```
 
