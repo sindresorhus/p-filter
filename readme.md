@@ -8,7 +8,7 @@ Useful when you need to run promise-returning & async functions multiple times w
 ## Install
 
 ```
-$ npm install --save p-filter
+$ npm install p-filter
 ```
 
 
@@ -25,12 +25,17 @@ const places = [
 	'Tokyo, Japan'
 ];
 
-const filterer = el => getWeather(el).then(place => place.temperature > 30);
+const filterer = async place => {
+	const weather = await getWeather(place);
+	return weather.temperature > 30;
+};
 
-pFilter(places, filterer).then(result => {
+(async () => {
+	const result = await pFilter(places, filterer);
+
 	console.log(result);
 	//=> ['Bangkok, Thailand']
-});
+})();
 ```
 
 

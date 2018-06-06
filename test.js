@@ -1,5 +1,5 @@
 import test from 'ava';
-import m from './';
+import m from '.';
 
 // See `p-map` for more comprehensive tests
 test('main', async t => {
