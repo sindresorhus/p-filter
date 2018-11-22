@@ -31,7 +31,7 @@ const filterer = async place => {
 };
 
 (async () => {
-	const result = await pFilter(places, filterer);
+	const result = await pFilter(places, filterer, { concurrency: 1 });
 
 	console.log(result);
 	//=> ['Bangkok, Thailand']

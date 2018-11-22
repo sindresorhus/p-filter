@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "Filter promises concurrently",
 	"license": "MIT",
+	"typings": "index.d.ts",
 	"repository": "sindresorhus/p-filter",
 	"author": {
 		"name": "Sindre Sorhus",
@@ -16,7 +17,8 @@
 		"test": "xo && ava"
 	},
 	"files": [
-		"index.js"
+		"index.js",
+		"index.d.ts"
 	],
 	"keywords": [
 		"promise",
@@ -34,7 +36,7 @@
 		"bluebird"
 	],
 	"dependencies": {
-		"p-map": "^1.0.0"
+		"p-map": "^2.0.0"
 	},
 	"devDependencies": {
 		"ava": "*",
