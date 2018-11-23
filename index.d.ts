@@ -46,4 +46,4 @@ export type Filterer<Element = any> = (input: Element, index: number) => boolean
  * 	//=> ['Bangkok, Thailand']
  * })();
  */
-export default function <Element>(input: Iterable<Element>, filterer: Filterer<Element>, options?: Options): Promise<Element[]>;
+export default function <Element>(input: Iterable<Element | Promise<Element>>, filterer: Filterer<Element>, options?: Options): Promise<Element[]>;
