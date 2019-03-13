@@ -1,6 +1,14 @@
 'use strict';
 const pMap = require('p-map');
 
-module.exports = (iterable, filterer, opts) =>
-	pMap(iterable, (el, i) => Promise.all([filterer(el, i), el]), opts)
-		.then(values => values.filter(x => Boolean(x[0])).map(x => x[1]));
+const pFilter = async (iterable, filterer, options) => {
+	const values = await pMap(
+		iterable,
+		(element, index) => Promise.all([filterer(element, index), element]),
+		options
+	);
+	return values.filter(value => Boolean(value[0])).map(value => value[1]);
+};
+
+module.exports = pFilter;
+module.exports.default = pFilter;
