@@ -55,7 +55,7 @@ Iterated over concurrently in the `filterer` function.
 
 Type: `Function`
 
-The filterer function that decides, whether an element should be included into result. Expected to return a `Promise<boolean>` or `boolean`.
+The filterer function that decides whether an element should be included into result. Expected to return `boolean | Promise<boolean>`.
 
 #### options
 
