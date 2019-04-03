@@ -1,5 +1,5 @@
-import {expectType} from 'tsd-check';
-import pFilter from '.';
+import {expectType} from 'tsd';
+import pFilter = require('.');
 
 const places = [
 	'Bangkok, Thailand',

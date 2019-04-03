@@ -11,4 +11,5 @@ const pFilter = async (iterable, filterer, options) => {
 };
 
 module.exports = pFilter;
+// TODO: Remove this for the next major release
 module.exports.default = pFilter;
