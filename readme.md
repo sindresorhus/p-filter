@@ -1,4 +1,4 @@
-# p-filter [![Build Status](https://travis-ci.org/sindresorhus/p-filter.svg?branch=master)](https://travis-ci.org/sindresorhus/p-filter)
+# p-filter
 
 > Filter promises concurrently
 
