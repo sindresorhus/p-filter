@@ -1,15 +1,11 @@
-'use strict';
-const pMap = require('p-map');
+import pMap from 'p-map';
 
-const pFilter = async (iterable, filterer, options) => {
+export default async function pFilter(iterable, filterer, options) {
 	const values = await pMap(
 		iterable,
 		(element, index) => Promise.all([filterer(element, index), element]),
-		options
+		options,
 	);
-	return values.filter(value => Boolean(value[0])).map(value => value[1]);
-};
 
-module.exports = pFilter;
-// TODO: Remove this for the next major release
-module.exports.default = pFilter;
+	return values.filter(value => Boolean(value[0])).map(value => value[1]);
+}

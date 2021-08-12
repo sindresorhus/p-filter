@@ -1,61 +1,41 @@
-import {Options as PMapOptions} from 'p-map';
+import {Options} from 'p-map';
 
-declare namespace pFilter {
-	type Options = PMapOptions;
-}
+/**
+Filter promises concurrently.
 
-declare const pFilter: {
-	/**
-	Filter promises concurrently.
+@param input - Iterated over concurrently in the `filterer` function.
+@param filterer - The filterer function that decides whether an element should be included into result.
 
-	@param input - Iterated over concurrently in the `filterer` function.
-	@param filterer - The filterer function that decides whether an element should be included into result.
+@example
+```
+import pFilter from 'p-filter';
+import getWeather from 'get-weather'; // Not a real module
 
-	@example
-	```
-	import pFilter = require('p-filter');
-	import getWeather from 'get-weather'; // not a real module
+const places = [
+	getCapital('Norway').then(info => info.name),
+	'Bangkok, Thailand',
+	'Berlin, Germany',
+	'Tokyo, Japan',
+];
 
-	const places = [
-		getCapital('Norway').then(info => info.name),
-		'Bangkok, Thailand',
-		'Berlin, Germany',
-		'Tokyo, Japan'
-	];
-
-	const filterer = async place => {
-		const weather = await getWeather(place);
-		return weather.temperature > 30;
-	};
-
-	(async () => {
-		const result = await pFilter(places, filterer);
-
-		console.log(result);
-		//=> ['Bangkok, Thailand']
-	})();
-	```
-	*/
-	<ValueType>(
-		input: Iterable<ValueType | PromiseLike<ValueType>>,
-		filterer: (
-			element: ValueType,
-			index: number
-		) => boolean | PromiseLike<boolean>,
-		options?: pFilter.Options
-	): Promise<ValueType[]>;
-
-	// TODO: Remove this for the next major release, refactor the whole definition to:
-	// declare function pFilter<ValueType>(
-	// 	input: Iterable<ValueType | PromiseLike<ValueType>>,
-	// 	filterer: (
-	// 		element: ValueType,
-	// 		index: number
-	// 	) => boolean | PromiseLike<boolean>,
-	// 	options?: pFilter.Options
-	// ): Promise<ValueType[]>;
-	// export = pFilter;
-	default: typeof pFilter;
+const filterer = async place => {
+	const weather = await getWeather(place);
+	return weather.temperature > 30;
 };
 
-export = pFilter;
+const result = await pFilter(places, filterer);
+
+console.log(result);
+//=> ['Bangkok, Thailand']
+```
+*/
+export default function pFilter<ValueType>(
+	input: Iterable<ValueType | PromiseLike<ValueType>>,
+	filterer: (
+		element: ValueType,
+		index: number
+	) => boolean | PromiseLike<boolean>,
+	options?: Options
+): Promise<ValueType[]>;
+
+export {Options} from 'p-map';

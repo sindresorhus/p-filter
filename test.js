@@ -1,5 +1,5 @@
 import test from 'ava';
-import pFilter from '.';
+import pFilter from './index.js';
 
 // See `p-map` for more comprehensive tests
 test('main', async t => {
