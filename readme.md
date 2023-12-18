@@ -64,6 +64,34 @@ Minimum: `1`
 
 The number of concurrently pending promises returned by `filterer`.
 
+### pFilterIterable(iterable, filterer, options?)
+
+Returns an async iterable that iterates over the promises in `iterable` and ones returned from `filterer` concurrently, calling `filterer` for each element.
+
+#### iterable
+
+Type: `Iterable<Promise|any>`
+
+Iterated over concurrently in the `filterer` function.
+
+#### filterer(element, index)
+
+Type: `Function`
+
+The filterer function that decides whether an element should be included into result. Expected to return `boolean | Promise<boolean>`.
+
+#### options
+
+Type: `object`
+
+##### concurrency
+
+Type: `number`\
+Default: `Infinity`\
+Minimum: `1`
+
+The number of concurrently pending promises returned by `filterer`.
+
 ## Related
 
 - [p-locate](https://github.com/sindresorhus/p-locate) - Get the first fulfilled promise that satisfies the provided testing function
