@@ -53,20 +53,20 @@ import getWeather from 'get-weather'; // Not a real module
 
 const places = [
 	getCapital('Norway').then(info => info.name),
-		'Bangkok, Thailand',
-		'Berlin, Germany',
-		'Tokyo, Japan',
-		];
+	'Bangkok, Thailand',
+	'Berlin, Germany',
+	'Tokyo, Japan',
+];
 
-		const filterer = async place => {
-			const weather = await getWeather(place);
-			return weather.temperature > 30;
-			};
+const filterer = async place => {
+	const weather = await getWeather(place);
+	return weather.temperature > 30;
+};
 
-		const result = await pFilterIterable(places, filterer);
+const result = await pFilterIterable(places, filterer);
 
-		console.log(result);
-		//=> ['Bangkok, Thailand']
+console.log(result);
+//=> ['Bangkok, Thailand']
 ```
  */
 export function pFilterIterable<ValueType>(
