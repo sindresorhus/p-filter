@@ -56,6 +56,8 @@ The filterer function that decides whether an element should be included into re
 
 Type: `object`
 
+See the [`p-map` options](https://github.com/sindresorhus/p-map#options).
+
 ##### concurrency
 
 Type: `number`\
@@ -110,6 +112,8 @@ The filterer function that decides whether an element should be included into re
 #### options
 
 Type: `object`
+
+See the [`p-map` options](https://github.com/sindresorhus/p-map#options).
 
 ##### concurrency
 
