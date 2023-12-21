@@ -1,4 +1,4 @@
-import type { Options } from "p-map";
+import type {Options} from 'p-map';
 
 /**
 Filter promises concurrently.
@@ -82,4 +82,4 @@ export function pFilterIterable<ValueType>(
 	options?: Options
 ): AsyncIterable<ValueType>;
 
-export { Options } from "p-map";
+export {Options} from 'p-map';
