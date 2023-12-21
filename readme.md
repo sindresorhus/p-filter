@@ -68,6 +68,33 @@ The number of concurrently pending promises returned by `filterer`.
 
 Returns an async iterable that iterates over the promises in `iterable` and ones returned from `filterer` concurrently, calling `filterer` for each element.
 
+#### Usage
+```js
+import {pFilterIterable} from 'p-filter';
+import getWeather from 'get-weather'; // Not a real module
+
+async function * getPlaces() {
+	const name = await getCapital('Norway');
+
+	yield name;
+	yield 'Bangkok, Thailand';
+	yield 'Berlin, Germany';
+	yield 'Tokyo, Japan';
+}
+
+const places = getPlaces();
+
+const filterer = async place => {
+	const weather = await getWeather(place);
+	return weather.temperature > 30;
+};
+
+const result = await pFilterIterable(places, filterer);
+
+console.log(result);
+//=> ['Bangkok, Thailand']
+```
+
 #### iterable
 
 Type: `Iterable<Promise|any>`

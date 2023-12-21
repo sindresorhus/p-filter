@@ -1,4 +1,4 @@
-import type {Options} from 'p-map';
+import type { Options } from "p-map";
 
 /**
 Filter promises concurrently.
@@ -48,15 +48,19 @@ Filter promises concurrently.
 
 @example
 ```
-import {pFilterIterable} from 'p-map';
+import {pFilterIterable} from 'p-filter';
 import getWeather from 'get-weather'; // Not a real module
 
-const places = [
-	getCapital('Norway').then(info => info.name),
-	'Bangkok, Thailand',
-	'Berlin, Germany',
-	'Tokyo, Japan',
-];
+async function * getPlaces() {
+	const name = await getCapital('Norway');
+
+	yield name;
+	yield 'Bangkok, Thailand';
+	yield 'Berlin, Germany';
+	yield 'Tokyo, Japan';
+}
+
+const places = getPlaces();
 
 const filterer = async place => {
 	const weather = await getWeather(place);
@@ -78,4 +82,4 @@ export function pFilterIterable<ValueType>(
 	options?: Options
 ): AsyncIterable<ValueType>;
 
-export {Options} from 'p-map';
+export { Options } from "p-map";
