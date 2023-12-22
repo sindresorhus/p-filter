@@ -67,9 +67,9 @@ const filterer = async place => {
 	return weather.temperature > 30;
 };
 
-const result = await pFilterIterable(places, filterer);
-
-console.log(result);
+for await (const element of pFilterIterable(places, filterer)) {
+	console.log(element);
+}
 //=> ['Bangkok, Thailand']
 ```
 */

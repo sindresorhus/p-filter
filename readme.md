@@ -6,8 +6,8 @@ Useful when you need to run promise-returning & async functions multiple times w
 
 ## Install
 
-```
-$ npm install p-filter
+```sh
+npm install p-filter
 ```
 
 ## Usage
@@ -42,7 +42,7 @@ Returns a `Promise` that is fulfilled when all promises in `input` and ones retu
 
 #### input
 
-Type: `Iterable<Promise|any>`
+Type: `Iterable<Promise<unknown> | unknown>`
 
 Iterated over concurrently in the `filterer` function.
 
@@ -70,7 +70,6 @@ The number of concurrently pending promises returned by `filterer`.
 
 Returns an async iterable that iterates over the promises in `iterable` and ones returned from `filterer` concurrently, calling `filterer` for each element.
 
-#### Usage
 ```js
 import {pFilterIterable} from 'p-filter';
 import getWeather from 'get-weather'; // Not a real module
@@ -91,15 +90,15 @@ const filterer = async place => {
 	return weather.temperature > 30;
 };
 
-const result = await pFilterIterable(places, filterer);
-
-console.log(result);
+for await (const element of pFilterIterable(places, filterer)) {
+	console.log(element);
+}
 //=> ['Bangkok, Thailand']
 ```
 
 #### iterable
 
-Type: `Iterable<Promise|any>`
+Type: `Iterable<Promise<unknown> | unknown>`
 
 Iterated over concurrently in the `filterer` function.
 

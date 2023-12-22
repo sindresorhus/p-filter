@@ -11,9 +11,13 @@
 		"url": "https://sindresorhus.com"
 	},
 	"type": "module",
-	"exports": "./index.js",
+	"exports": {
+		"types": "./index.d.ts",
+		"default": "./index.js"
+	},
+	"sideEffects": false,
 	"engines": {
-		"node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+		"node": ">=18"
 	},
 	"scripts": {
 		"test": "xo && ava && tsd"
@@ -34,8 +38,7 @@
 		"promises",
 		"concurrently",
 		"concurrency",
-		"parallel",
-		"bluebird"
+		"parallel"
 	],
 	"dependencies": {
 		"p-map": "^7.0.0"
