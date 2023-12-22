@@ -56,6 +56,65 @@ The filterer function that decides whether an element should be included into re
 
 Type: `object`
 
+See the [`p-map` options](https://github.com/sindresorhus/p-map#options).
+
+##### concurrency
+
+Type: `number`\
+Default: `Infinity`\
+Minimum: `1`
+
+The number of concurrently pending promises returned by `filterer`.
+
+### pFilterIterable(iterable, filterer, options?)
+
+Returns an async iterable that iterates over the promises in `iterable` and ones returned from `filterer` concurrently, calling `filterer` for each element.
+
+#### Usage
+```js
+import {pFilterIterable} from 'p-filter';
+import getWeather from 'get-weather'; // Not a real module
+
+async function * getPlaces() {
+	const name = await getCapital('Norway');
+
+	yield name;
+	yield 'Bangkok, Thailand';
+	yield 'Berlin, Germany';
+	yield 'Tokyo, Japan';
+}
+
+const places = getPlaces();
+
+const filterer = async place => {
+	const weather = await getWeather(place);
+	return weather.temperature > 30;
+};
+
+const result = await pFilterIterable(places, filterer);
+
+console.log(result);
+//=> ['Bangkok, Thailand']
+```
+
+#### iterable
+
+Type: `Iterable<Promise|any>`
+
+Iterated over concurrently in the `filterer` function.
+
+#### filterer(element, index)
+
+Type: `Function`
+
+The filterer function that decides whether an element should be included into result. Expected to return `boolean | Promise<boolean>`.
+
+#### options
+
+Type: `object`
+
+See the [`p-map` options](https://github.com/sindresorhus/p-map#options).
+
 ##### concurrency
 
 Type: `number`\
