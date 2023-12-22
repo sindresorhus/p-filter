@@ -42,9 +42,9 @@ export default function pFilter<ValueType>(
 Filter promises concurrently.
 
 @param input - Iterated over concurrently in the `filterer` function.
-@param filterer - The filterer function that decides whether an element should be included into result. Expected to return `boolean | Promise<boolean>`.
+@param filterer - The filterer function that decides whether an element should be included into result.
 @param options - See the [`p-map` options](https://github.com/sindresorhus/p-map#options).
-@returns Returns an async iterable that iterates over the promises in `iterable` and ones returned from `filterer` concurrently, calling `filterer` for each element.
+@returns An async iterable that iterates over the promises in `iterable` and ones returned from `filterer` concurrently, calling `filterer` for each element.
 
 @example
 ```
@@ -72,7 +72,7 @@ const result = await pFilterIterable(places, filterer);
 console.log(result);
 //=> ['Bangkok, Thailand']
 ```
- */
+*/
 export function pFilterIterable<ValueType>(
 	input: Iterable<ValueType | PromiseLike<ValueType>>,
 	filterer: (
