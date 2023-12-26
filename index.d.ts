@@ -1,4 +1,4 @@
-import type {Options} from 'p-map';
+import type { Options } from "p-map";
 
 /**
 Filter promises concurrently.
@@ -74,7 +74,9 @@ for await (const element of pFilterIterable(places, filterer)) {
 ```
 */
 export function pFilterIterable<ValueType>(
-	input: Iterable<ValueType | PromiseLike<ValueType>>,
+	input:
+		| AsyncIterable<ValueType | PromiseLike<ValueType>>
+		| Iterable<ValueType | PromiseLike<ValueType>>,
 	filterer: (
 		element: ValueType,
 		index: number
@@ -82,4 +84,4 @@ export function pFilterIterable<ValueType>(
 	options?: Options
 ): AsyncIterable<ValueType>;
 
-export {Options} from 'p-map';
+export { Options } from "p-map";

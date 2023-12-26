@@ -18,6 +18,15 @@ test('handles empty iterable', async t => {
 });
 
 test('pFilterIterable', async t => {
+	const iterableToArray = async iterable => {
+		const array = [];
+		for await (const item of iterable) {
+			array.push(item);
+		}
+
+		return array;
+	};
+
 	const rangeIterable = {
 		async * [Symbol.asyncIterator]() {
 			yield 1;
@@ -26,21 +35,29 @@ test('pFilterIterable', async t => {
 			yield 4;
 		},
 	};
-	const iterable = pFilterIterable(rangeIterable, x => x % 2);
-	const results = [];
-	for await (const x of iterable) {
-		results.push(x);
-	}
-
-	t.deepEqual(results, [1, 3]);
-
-	const iterable2 = pFilterIterable(rangeIterable, x =>
-		Promise.resolve(x % 2),
+	t.deepEqual(
+		await iterableToArray(pFilterIterable(rangeIterable, x => x % 2)),
+		[1, 3],
 	);
-	const results2 = [];
-	for await (const x of iterable2) {
-		results2.push(x);
-	}
 
-	t.deepEqual(results2, [1, 3]);
+	t.deepEqual(
+		await iterableToArray(
+			pFilterIterable(rangeIterable, x => Promise.resolve(x % 2)),
+		),
+		[1, 3],
+	);
+
+	t.deepEqual(
+		await iterableToArray(
+			pFilterIterable([Promise.resolve(1), 2, 3, 4], x => x % 2),
+		),
+		[1, 3],
+	);
+	t.deepEqual(
+		await iterableToArray(
+			pFilterIterable([1, 2, 3, 4], x => Promise.resolve(x % 2)),
+		),
+		[1, 3],
+	);
+	t.deepEqual(await iterableToArray(pFilterIterable([])), []);
 });
