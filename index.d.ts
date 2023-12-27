@@ -74,7 +74,9 @@ for await (const element of pFilterIterable(places, filterer)) {
 ```
 */
 export function pFilterIterable<ValueType>(
-	input: Iterable<ValueType | PromiseLike<ValueType>>,
+	input:
+	| AsyncIterable<ValueType | PromiseLike<ValueType>>
+	| Iterable<ValueType | PromiseLike<ValueType>>,
 	filterer: (
 		element: ValueType,
 		index: number

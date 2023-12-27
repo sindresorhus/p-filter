@@ -22,6 +22,18 @@ expectType<AsyncIterable<string>>(
 	),
 );
 
+async function * getPlaces(): AsyncIterable<string> {
+	yield 'Bangkok, Thailand';
+	yield 'Berlin, Germany';
+	yield 'Tokyo, Japan';
+}
+
+expectType<AsyncIterable<string>>(
+	pFilterIterable(getPlaces(), async place =>
+		place === 'Bangkok, Thailand' ? true : Promise.resolve(false),
+	),
+);
+
 expectType<AsyncIterable<number>>(
 	pFilterIterable(new Set([1, 2]), number => number > 1, {concurrency: 1}),
 );

@@ -41,11 +41,11 @@
 		"parallel"
 	],
 	"dependencies": {
-		"p-map": "^7.0.0"
+		"p-map": "^7.0.1"
 	},
 	"devDependencies": {
 		"ava": "^6.0.1",
-		"tsd": "^0.30.0",
+		"tsd": "^0.30.1",
 		"xo": "^0.56.0"
 	}
 }
