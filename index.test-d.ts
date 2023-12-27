@@ -22,7 +22,7 @@ expectType<AsyncIterable<string>>(
 	),
 );
 
-async function * getPlaces() {
+async function * getPlaces(): AsyncIterable<string> {
 	yield 'Bangkok, Thailand';
 	yield 'Berlin, Germany';
 	yield 'Tokyo, Japan';
