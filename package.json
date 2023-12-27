@@ -1,6 +1,6 @@
 {
 	"name": "p-filter",
-	"version": "4.0.0",
+	"version": "4.1.0",
 	"description": "Filter promises concurrently",
 	"license": "MIT",
 	"repository": "sindresorhus/p-filter",
