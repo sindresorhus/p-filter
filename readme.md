@@ -38,7 +38,7 @@ console.log(result);
 
 ### pFilter(input, filterer, options?)
 
-Returns a `Promise` that is fulfilled when all promises in `input` and ones returned from `filterer` are fulfilled, or rejects if any of the promises reject. The fulfilled value is an `Array` of the fulfilled values returned from `filterer` in `input` order.
+Returns a `Promise` that is fulfilled when all promises in `input` and the ones returned from `filterer` are fulfilled, or rejects if any of the promises reject. The fulfilled value is an `Array` of the fulfilled values returned from `filterer` in `input` order.
 
 #### input
 
@@ -68,7 +68,7 @@ The number of concurrently pending promises returned by `filterer`.
 
 ### pFilterIterable(iterable, filterer, options?)
 
-Returns an async iterable that iterates over the promises in `iterable` and ones returned from `filterer` concurrently, calling `filterer` for each element.
+Returns an async iterable that iterates over the promises in `iterable` and the ones returned from `filterer` concurrently, calling `filterer` for each element.
 
 ```js
 import {pFilterIterable} from 'p-filter';
