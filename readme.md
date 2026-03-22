@@ -2,7 +2,7 @@
 
 > Filter promises concurrently
 
-Useful when you need to run promise-returning & async functions multiple times with different inputs concurrently and get a filtered down result.
+Useful when you need to run promise-returning and async functions concurrently with different inputs and get a filtered result.
 
 ## Install
 
@@ -38,7 +38,7 @@ console.log(result);
 
 ### pFilter(input, filterer, options?)
 
-Returns a `Promise` that is fulfilled when all promises in `input` and ones returned from `filterer` are fulfilled, or rejects if any of the promises reject. The fulfilled value is an `Array` of the fulfilled values returned from `filterer` in `input` order.
+Returns a `Promise` that is fulfilled when all promises in `input` and all promises returned from `filterer` are fulfilled, or rejects if any of the promises reject. The fulfilled value is an `Array` of the input elements for which `filterer` returns, or resolves to, `true`, in input order.
 
 #### input
 
@@ -50,7 +50,7 @@ Iterated over concurrently in the `filterer` function.
 
 Type: `Function`
 
-The filterer function that decides whether an element should be included into result. Expected to return `boolean | Promise<boolean>`.
+The filterer function that decides whether an element should be included in the result. Expected to return `boolean | Promise<boolean>`.
 
 #### options
 
@@ -68,16 +68,16 @@ The number of concurrently pending promises returned by `filterer`.
 
 ### pFilterIterable(iterable, filterer, options?)
 
-Returns an async iterable that iterates over the promises in `iterable` and ones returned from `filterer` concurrently, calling `filterer` for each element.
+Returns an async iterable that concurrently awaits the promises in `iterable` and the promises returned from `filterer`, yielding the input elements for which `filterer` returns, or resolves to, `true`.
 
 ```js
 import {pFilterIterable} from 'p-filter';
 import getWeather from 'get-weather'; // Not a real module
 
 async function * getPlaces() {
-	const name = await getCapital('Norway');
+	const info = await getCapital('Norway');
 
-	yield name;
+	yield info.name;
 	yield 'Bangkok, Thailand';
 	yield 'Berlin, Germany';
 	yield 'Tokyo, Japan';
@@ -93,12 +93,12 @@ const filterer = async place => {
 for await (const element of pFilterIterable(places, filterer)) {
 	console.log(element);
 }
-//=> ['Bangkok, Thailand']
+//=> 'Bangkok, Thailand'
 ```
 
 #### iterable
 
-Type: `Iterable<Promise<unknown> | unknown>`
+Type: `AsyncIterable<Promise<unknown> | unknown> | Iterable<Promise<unknown> | unknown>`
 
 Iterated over concurrently in the `filterer` function.
 
@@ -106,7 +106,7 @@ Iterated over concurrently in the `filterer` function.
 
 Type: `Function`
 
-The filterer function that decides whether an element should be included into result. Expected to return `boolean | Promise<boolean>`.
+The filterer function that decides whether an element should be included in the result. Expected to return `boolean | Promise<boolean>`.
 
 #### options
 
@@ -126,5 +126,5 @@ The number of concurrently pending promises returned by `filterer`.
 
 - [p-locate](https://github.com/sindresorhus/p-locate) - Get the first fulfilled promise that satisfies the provided testing function
 - [p-map](https://github.com/sindresorhus/p-map) - Map over promises concurrently
-- [p-times](https://github.com/sindresorhus/p-times) - Run promise-returning & async functions a specific number of times concurrently
+- [p-times](https://github.com/sindresorhus/p-times) - Run promise-returning and async functions a specific number of times concurrently
 - [More…](https://github.com/sindresorhus/promise-fun)
