@@ -1,6 +1,6 @@
 import pMap, {pMapIterable} from 'p-map';
 
-export default async function pFilter(iterable, filterer, options) {
+export default async function pFilter(iterable, filterer = Boolean, options) {
 	const values = await pMap(
 		iterable,
 		(element, index) => Promise.all([filterer(element, index), element]),
@@ -10,7 +10,7 @@ export default async function pFilter(iterable, filterer, options) {
 	return values.filter(value => Boolean(value[0])).map(value => value[1]);
 }
 
-export function pFilterIterable(iterable, filterer, options) {
+export function pFilterIterable(iterable, filterer = Boolean, options) {
 	const values = pMapIterable(
 		iterable,
 		(element, index) => Promise.all([filterer(element, index), element]),
